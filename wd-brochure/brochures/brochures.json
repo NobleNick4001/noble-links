@@ -1,0 +1,37 @@
+{
+  "source": "https://github.com/NobleNick4001/Noble-Windows-and-Doors-/blob/main/js/pages/brochures.js",
+  "pdfBase": "https://noblenick4001.github.io/Noble-Windows-and-Doors-/brochures/",
+  "groups": [
+    {
+      "id": "milgard",
+      "name": "Milgard",
+      "items": [
+        { "file": "milgard-v250-style-line.pdf", "label": "Milgard V250 Style Line" },
+        { "file": "milgard-v300-trinsic.pdf", "label": "Milgard V300 Trinsic" },
+        { "file": "milgard-v400-tuscany.pdf", "label": "Milgard V400 Tuscany" },
+        { "file": "milgard-c700-fiberglass.pdf", "label": "Milgard C700 Fiberglass" },
+        { "file": "milgard-a250-aluminum.pdf", "label": "Milgard A250 Aluminum" },
+        { "file": "milgard-ax650-bifold.pdf", "label": "Milgard AX650 Bi-Fold" },
+        { "file": "milgard-ax650-stacking.pdf", "label": "Milgard AX650 Stacking" },
+        { "file": "milgard-ax650-pocket.pdf", "label": "Milgard AX650 Pocket" },
+        { "file": "milgard-patio-doors.pdf", "label": "Milgard Patio Doors" },
+        { "file": "milgard-window-selection-guide.pdf", "label": "Milgard Window Selection Guide" }
+      ]
+    },
+    {
+      "id": "andersen",
+      "name": "Andersen",
+      "items": [
+        { "file": "andersen-100-series.pdf", "label": "Andersen 100 Series brochure" }
+      ]
+    },
+    {
+      "id": "prl",
+      "name": "PRL",
+      "items": [
+        { "file": "prl-max-slider-multi-slide-door.pdf", "label": "PRL Max Slider Multi-Slide Door" },
+        { "file": "prl-bottom-rolling-bifold-door.pdf", "label": "PRL Bottom Rolling Bi-Fold Door" }
+      ]
+    }
+  ]
+}
