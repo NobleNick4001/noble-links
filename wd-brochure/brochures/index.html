@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Brochures · Noble Windows &amp; Doors</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;background:#002360;color:#fff;display:flex;justify-content:center}
+main{width:100%;max-width:480px;padding:28px 20px 32px;text-align:center}
+.back{display:inline-flex;align-items:center;gap:6px;margin:0 0 8px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;opacity:.9}
+.logo{background:transparent;border-radius:20px;padding:18px;margin:0 auto 18px;max-width:280px}
+.logo img{width:100%;display:block}
+h1{font-size:24px;margin:0 0 6px}
+.lead{margin:0 0 18px;opacity:.8;font-size:15px}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#F7931E;margin:22px 0 10px;font-weight:700}
+.b{display:flex;align-items:center;justify-content:center;gap:12px;min-height:60px;margin:0 0 14px;padding:12px 16px;border-radius:14px;background:#fff;color:#002360;text-decoration:none;font-weight:600;font-size:18px;line-height:1.25;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+#groups .b{font-size:17px}
+.b.p{background:#F7931E;color:#fff}
+.b:active{transform:scale(.98)}
+.b svg{flex:none}
+.status{margin:12px 0 0;opacity:.8;font-size:15px}
+footer{margin-top:24px;font-size:12px;opacity:.6}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">← Back</a>
+  <div class="logo"><img src="../logo.png" alt="Noble Windows &amp; Doors logo"></div>
+  <h1>Product Brochures</h1>
+  <p class="lead">Official Milgard, Andersen and PRL brochures.</p>
+  <a class="b p" href="tel:+16238103460">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+    <span>Call (623) 810-3460</span>
+  </a>
+  <div id="groups"><p class="status">Loading brochures…</p></div>
+  <footer>© Noble Windows &amp; Doors · Phoenix, AZ</footer>
+</main>
+<template id="file-icon">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h6"/></svg>
+</template>
+<script>
+(async function () {
+  var root = document.getElementById("groups");
+  var icon = document.getElementById("file-icon");
+  try {
+    var res = await fetch("brochures.json");
+    if (!res.ok) throw new Error(String(res.status));
+    var data = await res.json();
+    var base = data.pdfBase || "";
+    root.replaceChildren();
+    (data.groups || []).forEach(function (group) {
+      var section = document.createElement("section");
+      if (group.name) section.setAttribute("aria-label", group.name);
+      var h2 = document.createElement("h2");
+      h2.textContent = group.name || "";
+      section.appendChild(h2);
+      (group.items || []).forEach(function (item) {
+        var a = document.createElement("a");
+        a.className = "b";
+        a.href = base + item.file;
+        a.target = "_blank";
+        a.rel = "noopener";
+        var label = document.createElement("span");
+        label.textContent = item.label || "";
+        a.appendChild(icon.content.cloneNode(true));
+        a.appendChild(label);
+        section.appendChild(a);
+      });
+      root.appendChild(section);
+    });
+  } catch (err) {
+    root.textContent = "";
+    var p = document.createElement("p");
+    p.className = "status";
+    p.textContent = "Brochures could not be loaded. Please call (623) 810-3460.";
+    root.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>
